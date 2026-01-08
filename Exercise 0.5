@@ -1,0 +1,24 @@
+User
+ |
+ |  1. Navigate to SPA
+ v
+Browser (loads SPA)
+ |  2. Load HTML/CSS/JS
+ |  3. Initialize SPA
+ v
+SPA Frontend
+ |  4. GET /api/notes
+ v
+Backend API
+ |  5. Query Database
+ v
+Database
+ |  6. Return notes JSON
+ v
+Backend API
+ |  7. Return data to SPA
+ v
+SPA Frontend
+ |  8. Render notes dynamically
+ v
+User interacts -> SPA sends POST/PUT/DELETE -> Backend updates DB -> SPA updates UI
