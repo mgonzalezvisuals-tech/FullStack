@@ -1,0 +1,17 @@
+sequenceDiagram
+    participant Browser
+    participant Server
+    participant Database
+
+    Note over Browser: User types a new note and clicks "Add"
+
+    Browser->>Server: POST /api/notes { "content": "Learn SPA diagrams" }
+    activate Server
+    Server->>Database: Store new note
+    activate Database
+    Database-->>Server: Note saved with ID and timestamp
+    deactivate Database
+    Server-->>Browser: { "id": 124, "content": "Learn SPA diagrams", "date": "2026-01-08" }
+    deactivate Server
+
+    Note right of Browser: SPA adds the new note to the list dynamically
