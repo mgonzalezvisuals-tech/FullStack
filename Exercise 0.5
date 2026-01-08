@@ -1,24 +1,25 @@
-User
- |
- |  1. Navigate to SPA
- v
-Browser (loads SPA)
- |  2. Load HTML/CSS/JS
- |  3. Initialize SPA
- v
-SPA Frontend
- |  4. GET /api/notes
- v
-Backend API
- |  5. Query Database
- v
-Database
- |  6. Return notes JSON
- v
-Backend API
- |  7. Return data to SPA
- v
-SPA Frontend
- |  8. Render notes dynamically
- v
-User interacts -> SPA sends POST/PUT/DELETE -> Backend updates DB -> SPA updates UI
+sequenceDiagram
+    participant User
+    participant Browser
+    participant SPA
+    participant Backend
+    participant Database
+
+    User->>Browser: 1. Navigate to SPA
+    Browser->>SPA: 2. Load HTML/CSS/JS
+    SPA->>SPA: 3. Initialize SPA frontend
+
+    SPA->>Backend: 4. GET /api/notes
+    Backend->>Database: 5. Query database
+    Database-->>Backend: 6. Return notes JSON
+    Backend-->>SPA: 7. Return data to SPA
+
+    SPA->>Browser: 8. Render notes dynamically
+
+    Note right of User: User interacts with SPA
+    User->>SPA: Add/Delete/Update note
+    SPA->>Backend: POST/PUT/DELETE note
+    Backend->>Database: Update DB
+    Database-->>Backend: Confirmation
+    Backend-->>SPA: Updated note data
+    SPA->>Browser: Update UI dynamically
